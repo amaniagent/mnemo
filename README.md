@@ -119,7 +119,7 @@ mnemo implements a **6-layer memory architecture** designed for LLM agent ecosys
 
 ## Getting Started
 
-> **Note:** This is a specification repository. Implementation lives in the Hermes Agent profiles under `~/.hermes/profiles/brain-*/`.
+> **Note:** This repository currently contains the architecture specification and initial folder skeleton. Implementation is actively being developed in the Hermes Agent profiles under `~/.hermes/profiles/brain-*/`.
 
 ### Prerequisites
 
@@ -145,7 +145,7 @@ brain-memory/
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) (to be created).
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on contributing to this project.
 
 ## License
 

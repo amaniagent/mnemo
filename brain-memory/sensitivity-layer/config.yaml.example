@@ -1,0 +1,44 @@
+# Sensitivity Layer Configuration Template
+# Copy to brain-memory/sensitivity-layer/config.yaml
+
+enabled: true
+default_tag: "INTERNAL"
+enforcement: "strict"  # strict | permissive | disabled
+
+index_db: "index.db"
+
+feature_flags:
+  pii_redaction: true
+  tag_enforcement: true
+  log_filtering: true
+  mcp_filtering: true
+
+policies:
+  PUBLIC:
+    llm_access: "all"
+    logging: "full"
+    external_models: true
+  INTERNAL:
+    llm_access: "local_only"
+    logging: "metadata_only"
+    external_models: false
+  SENSITIVE:
+    llm_access: "never"
+    logging: "none"
+    external_models: false
+    structural_ref_only: true
+  PRIVATE:
+    llm_access: "never"
+    logging: "none"
+    external_models: false
+    absolute_local: true
+
+tag_patterns:
+  - pattern: "PUBLIC"
+    tag: "PUBLIC"
+  - pattern: "INTERNAL"
+    tag: "INTERNAL"
+  - pattern: "SENSITIVE"
+    tag: "SENSITIVE"
+  - pattern: "PRIVATE"
+    tag: "PRIVATE"
