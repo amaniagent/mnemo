@@ -1,0 +1,121 @@
+# Brain Memory Manager Main Configuration
+# Copy to brain-memory/config.yaml
+
+version: "0.1.0"
+profile: "brain-memory-manager"
+
+layer_profiles:
+  user_memory: "brain-user-memory"
+  agent_memory: "brain-agent-memory"
+  session_memory: "brain-session-memory"
+  project_memory: "brain-project-memory"
+  knowledge_memory: "brain-knowledge-memory"
+  longterm_memory: "brain-longterm-memory"
+  sensitivity: "brain-sensitivity"
+
+paths:
+  root: "~/brain-memory"
+  user_memory: "user-memory"
+  agent_memory: "agent-memory"
+  session_memory: "session-memory"
+  project_memory: "project-memory"
+  knowledge_memory: "knowledge-memory"
+  longterm_memory: "longterm-memory"
+  sensitivity: "sensitivity-layer"
+  telemetry: "telemetry"
+  raw_input: "~/files/raw"
+
+sensitivity:
+  enabled: true
+  config_path: "sensitivity-layer/config.yaml"
+  index_db: "sensitivity-layer/index.db"
+  default_tag: "INTERNAL"
+  enforcement: "strict"
+
+doc_sizes:
+  xs: { min: 50, max: 150, purpose: "System prompts, reference snippets" }
+  s:  { min: 150, max: 500, purpose: "Quick context, agent briefing" }
+  m:  { min: 500, max: 2000, purpose: "Normal context, standard tasks" }
+  l:  { min: 2000, max: 8000, purpose: "Detailed context, complex tasks" }
+  xl: { min: 8000, max: 32000, purpose: "Complete documentation, onboarding" }
+
+agent_budgets:
+  default:
+    user_memory: "s"
+    agent_memory: "m"
+    session_memory: "l"
+    project_memory: "m"
+    knowledge_memory: "xl"
+    longterm_memory: "l"
+    sensitivity: "s"
+
+pipeline:
+  cleaner:
+    enabled: true
+    operations:
+      - encoding_normalization
+      - whitespace_cleanup
+      - boilerplate_removal
+      - pii_redaction
+  tagger:
+    enabled: true
+    auto_tags:
+      - sensitivity
+      - topic
+      - layer_routing
+      - doc_size
+  router:
+    enabled: true
+    trigger: "inotify+cron"
+    cron_schedule: "0 * * * *"
+
+telemetry:
+  langfuse:
+    enabled: true
+    endpoint: "http://localhost:3000"
+    public_key: "${LANGFUSE_PUBLIC_KEY}"
+    secret_key: "${LANGFUSE_SECRET_KEY}"
+    sample_rate: 1.0
+  token_tracking:
+    enabled: true
+    path: "telemetry/token-usage.jsonl"
+
+backup:
+  primary:
+    tool: "restic"
+    repo: "${RESTIC_REPOSITORY}"
+    password_file: "${RESTIC_PASSWORD_FILE}"
+    schedule: "daily"
+    retention: "30d"
+  secondary:
+    tool: "rclone"
+    remote: "gdrive:brain-memory-backup"
+    schedule: "daily"
+    retention: "90d"
+  verification:
+    schedule: "monthly"
+    restic_check_subset: "5%"
+    rclone_check: true
+
+git:
+  branch_prefix: "ingest/"
+  merge_strategy: "no-ff"
+  main_branch: "main"
+  tag_format: "ingest/{layer}-{timestamp}"
+  sign_commits: true
+
+mcp:
+  gortex:
+    enabled: true
+    command: "gortex"
+    args: ["mcp", "--index-dir", "~/brain-memory/knowledge-memory/repo"]
+  pageindex:
+    enabled: true
+    command: "pageindex"
+    args: ["mcp", "--index-dir", "~/brain-memory/session-memory"]
+  lightrag:
+    enabled: true
+    url: "http://localhost:9621"
+  rag_anything:
+    enabled: true
+    url: "http://localhost:8020"
