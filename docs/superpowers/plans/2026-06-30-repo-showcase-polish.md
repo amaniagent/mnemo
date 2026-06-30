@@ -710,6 +710,7 @@ mnemo composes existing open-source tools rather than reimplementing them. Credi
 | [LightRAG](https://github.com/HKUDS/LightRAG) | Graph-based RAG pipeline |
 | [Langfuse](https://github.com/langfuse/langfuse) | LLM observability/tracing |
 | [AFFiNE](https://github.com/toeverything/AFFiNE) | Self-hosted, Notion-like workspace — candidate control layer |
+| [CLI-Anything](https://github.com/HKUDS/CLI-Anything) | Turns existing software into agent-native CLIs (e.g. Blender, GIMP, LibreOffice) without GUI automation |
 
 ```
 
