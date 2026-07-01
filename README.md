@@ -45,6 +45,10 @@ mnemo implements a **6-layer memory architecture** designed for LLM agent ecosys
 
 ## Why mnemo?
 
+> **Update:** Turns out connecting Claude Desktop to a vServer *is* already possible — so the original "they can't talk to each other at all" framing below was, as usual, mostly human error and a missing Human-in-the-Loop. The bigger idea still stands, though: a shared, plug-and-play memory layer across machines and sessions remains genuinely valuable — **especially for teams**, where the payoff of what's being built here could be real. More on that later.
+>
+> Also, on a personal note: working with Claude Desktop has been a whole new experience for me — another aha moment, or honestly almost a quantum leap?! #WoW
+
 The concrete itch that started this: running Claude Code on a vServer and Claude Desktop on a Mac, expecting them to somehow share context with each other — they don't. Installing Claude Code on two machines doesn't make those two instances aware of each other's state. Every machine, every fresh Claude session, starts from zero: you re-explain your projects, your preferences, your conventions, and where you left off, every time. That's not a personal annoyance — it's a structural gap in how multi-machine agent workflows work today, and most developers running agents on more than one machine hit it.
 
 mnemo's goal is to close that gap: configure your memory layers once, then plug any Claude instance — on any machine — into the same memory, plug-and-play. The agent on your vServer and the one on your desktop should see the same projects, the same accumulated knowledge, the same "where you are right now" — without re-teaching either one from scratch. This repository is the architecture for that (see [Roadmap](#roadmap) for what's actually built today vs. still aspirational — it's early).
