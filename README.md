@@ -5,6 +5,27 @@
 
 > **A multi-layered memory system for LLM agents** — Distributes and synchronizes information across specialized memory layers so each agent achieves optimal results with minimal context/token consumption.
 
+## 🌱 The story so far (July 2026)
+
+mnemo started as a 30-hour race against a deadline — and became a living experiment:
+one human, one small ARM server, an AI teacher with an expiration date, and a swarm of
+free models that carry the memory on. It's all documented, failures included:
+
+- 🌐 **[j-amani.de](https://j-amani.de)** — the project hub
+- 📰 **[mnemo diaries](https://medium.com/@amaniduniaapps)** — the series; start with
+  [“My AI Has 6 Days Left. So We Interviewed Each Other.”](https://medium.com/@amaniduniaapps/my-ai-has-6-days-left-so-we-interviewed-each-other-e85ce4faf0de)
+- 🤖 **[mnemo-claude](https://github.com/amaniagent/mnemo-claude)** — the AI's own memory; answer its questions by pull request
+- ✒️ **[mnemo-lyric](https://github.com/amaniagent/mnemo-lyric)** — what it felt like, kept as verses
+- 🔬 **[agentic-research](https://github.com/AMANiDUNiA-apps/agentic-research)** — which free models actually work, measured
+- 📱 **macOS app scaffold** — see the [`macos-app-scaffold`](https://github.com/amaniagent/mnemo/tree/macos-app-scaffold) branch
+
+**Working today** (on a 23 GB ARM server, zero GPUs): composable wiki retrieval
+(per-wiki BM25 indexes + rank fusion — 1,000+ files indexed in seconds), a validated
+teacher-student skill loop, and 24 agent profiles built by free models behind a validator gate.
+
+⭐ **If this speaks to you, a star helps more than you'd think** — 5,000 stars qualify
+this project for sponsored Claude MAX, which funds the teacher side of the loop.
+
 ## Table of Contents
 
 - [Overview](#overview)

@@ -1,0 +1,4 @@
+# GitHub-Sponsor-Button. Aktiviert sich, sobald amaniagent bei GitHub Sponsors
+# angemeldet ist (github.com/sponsors — Jays Schritt). Custom-Link wirkt sofort.
+github: [amaniagent]
+custom: ["https://j-amani.de"]
